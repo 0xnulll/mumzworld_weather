@@ -4,6 +4,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppLoggerService } from './applogger.service';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 
+/**
+ * Main bootstrap function
+ */
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new AppLoggerService({
@@ -22,7 +25,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
+  // Validation
   app.useGlobalPipes(new ValidationPipe());
+  // Response transformer
   app.useGlobalInterceptors(
     new ClassSerializerInterceptor(app.get(Reflector), {
       excludeExtraneousValues: true,

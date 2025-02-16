@@ -5,7 +5,21 @@ import { Request } from 'express';
 interface RequestWithUserDetails extends Request {
   user?: User;
 }
-
+/**
+ * AppLoggerService is a request-scoped logger that extends the ConsoleLogger
+ * from NestJS. It captures request details and formats log messages
+ * with additional context such as HTTP method, path, and user ID.
+ *
+ * Usage:
+ * 1. Inject AppLoggerService into your controller or service.
+ * 2. Call setRequest() with the current request to log request-specific data.
+ * 3. Use the formatMessage() method to create structured log entries.
+ *
+ * Example:
+ * const logger = new AppLoggerService();
+ * logger.setRequest(request);
+ * logger.log(logMessage);
+ */
 @Injectable({ scope: Scope.REQUEST }) // Request-scoped to access per-request data
 export class AppLoggerService extends ConsoleLogger {
   private request?: RequestWithUserDetails;

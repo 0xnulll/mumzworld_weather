@@ -14,6 +14,7 @@ import { LoggerMiddleware } from './loggermiddleware.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
+// App module
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
