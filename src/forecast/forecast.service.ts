@@ -5,6 +5,9 @@ import {
   WeatherApiService,
 } from '../external/weather-api.service';
 
+const CACHE_TTL = 12 * 60 * 60;
+
+// Forecast module service
 @Injectable()
 export class ForecastService {
   constructor(
@@ -12,6 +15,11 @@ export class ForecastService {
     @Inject(CACHE_MANAGER) private readonly cacheService: Cache,
   ) {}
 
+  /**
+   * Retrieves the weather forecast for a specified city.
+   * @param city - The name of the city for which to fetch the forecast.
+   * @returns A promise that resolves to the weather forecast data for the city.
+   */
   async getForecast(city: string): Promise<WeatherApiForecastData> {
     const cacheKey = `forecast_${city.toLocaleLowerCase()}`;
     const cachedData =
@@ -22,7 +30,7 @@ export class ForecastService {
     await this.cacheService.set<WeatherApiForecastData>(
       cacheKey,
       forecastData,
-      12 * 60 * 60,
+      CACHE_TTL,
     );
     return forecastData;
   }

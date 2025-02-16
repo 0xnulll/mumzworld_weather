@@ -2,18 +2,32 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 
+/**
+ * External Service for interacting with the Weather API.
+ */
 @Injectable()
 export class WeatherApiService {
   private readonly SERVER_URL = 'https://api.weatherapi.com';
   private readonly API_KEY = process.env.WEATHER_API_KEY || 'test';
   constructor(private httpService: HttpService) {}
 
+  /**
+   * Fetches the current weather data for a specified city.
+   * @param city - The name of the city to fetch weather data for.
+   * @returns A promise that resolves to the current weather data.
+   */
   async fetchCurrent(city: string): Promise<WeatherApiCurrentWeatherData> {
     const url = `${this.SERVER_URL}/v1/current.json?key=${this.API_KEY}&q=${city}&aqi=no`;
-    const response = await firstValueFrom(this.httpService.get(url));
-    return response.data as unknown as WeatherApiCurrentWeatherData;
+    const response = await firstValueFrom<{ data: WeatherApiCurrentWeatherData }>(this.httpService.get(url));
+    return response.data;
   }
 
+  /**
+   * Fetches the weather forecast for a specified city over a number of days.
+   * @param city - The name of the city to fetch the forecast for.
+   * @param days - The number of days to fetch the forecast for (default is 5).
+   * @returns A promise that resolves to the weather forecast data.
+   */
   async fetchForecast(
     city: string,
     days: number = 5,

@@ -13,7 +13,7 @@ import {
 import { AuthGuard } from '../auth/auth.guard';
 import { LocationsService } from './locations.service';
 import { HttpApiResponse } from 'src/common/interfaces/api-response.interface';
-import { LocationDto, CreateLocationDto } from './dto/dto';
+import { LocationDto, CreateLocationDto } from './dto';
 import {
   ApiOperation,
   ApiResponse,
@@ -23,12 +23,21 @@ import {
 } from '@nestjs/swagger';
 import { User } from 'src/users/dto';
 
+/**
+ * Controller for managing user favorite locations.
+ */
 @UseGuards(AuthGuard)
 @ApiBearerAuth()
 @Controller('locations')
 export class LocationsController {
   constructor(private readonly locationsService: LocationsService) {}
 
+  /**
+   * Adds a location to the user's favorites.
+   * @param postData - The location data to be added.
+   * @param req - The request object containing user information.
+   * @returns A promise that resolves to the API response containing the created location.
+   */
   @ApiOperation({ summary: 'Add a location to user’s favorites' })
   @ApiBody({
     description: 'Location data',
@@ -83,7 +92,12 @@ export class LocationsController {
   }
 
 
-
+  /** 
+   * Removes a location from the user's favorites.
+   * @param id - The ID of the location to be removed.
+   * @param req - The request object containing user information.
+   * @returns A promise that resolves to the API response indicating success.
+   */
   @ApiOperation({ summary: 'Remove a location from favorites' })
   @ApiParam({ name: 'id', type: 'number', description: 'Location ID' })
   @ApiResponse({
@@ -112,7 +126,11 @@ export class LocationsController {
   }
 
 
-
+  /**
+   * Retrieves the user's favorite locations.
+   * @param req - The request object containing user information.
+   * @returns A promise that resolves to the API response containing the list of favorite locations.
+   */
   @ApiOperation({ summary: 'Retrieve the user’s favorite locations' })
   @ApiResponse({
     status: 200,

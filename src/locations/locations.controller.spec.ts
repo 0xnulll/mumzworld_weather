@@ -3,7 +3,7 @@ import { LocationsController } from './locations.controller';
 import { AuthGuard } from '../auth/auth.guard';
 import { LocationsService } from './locations.service';
 import { BadRequestException } from '@nestjs/common';
-import { CreateLocationDto } from './dto/dto';
+import { CreateLocationDto } from './dto';
 
 describe('LocationsController', () => {
   let controller: LocationsController;

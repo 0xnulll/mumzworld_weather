@@ -5,6 +5,7 @@ import { HttpModule } from '@nestjs/axios';
 import { CacheModule } from '@nestjs/cache-manager';
 import { WeatherApiService } from '../external/weather-api.service';
 
+// Forecast module
 @Module({
   imports: [HttpModule, CacheModule.register()],
   controllers: [ForecastController],

@@ -3,6 +3,9 @@ import { AuthService } from './auth.service';
 import { ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 import { SignInDto } from './dto';
 
+/**
+ * Controller for authentication-related endpoints.
+ */
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

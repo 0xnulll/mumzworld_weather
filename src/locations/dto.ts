@@ -1,7 +1,7 @@
 import { Expose } from 'class-transformer';
 
 import { IsString, IsNotEmpty, MinLength } from 'class-validator';
-import { BaseDto } from 'src/common/dto';
+import { BaseDto } from '../common/dto';
 
 export class CreateLocationDto {
   @IsString()

@@ -4,10 +4,19 @@ import { HttpApiResponse } from 'src/common/interfaces/api-response.interface';
 import { ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { CurrentWeatherDataDto } from './dto';
 
+/**
+ * Controller for handling weather-related requests.
+ */
 @Controller('weather')
 export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
 
+  /**
+   * Retrieves weather data for a specified city.
+   * @param city - The name of the city for which to retrieve weather data.
+   * @returns A promise that resolves to an HttpApiResponse containing the current weather data.
+   * @throws BadRequestException if the city parameter is not provided.
+   */
   @ApiOperation({ summary: 'Get weather data for a city' })
   @ApiParam({ name: 'city', type: String, description: 'Name of the city' })
   @ApiResponse({

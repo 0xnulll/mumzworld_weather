@@ -5,6 +5,9 @@ import {
   WeatherApiService,
 } from '../external/weather-api.service';
 
+const CACHE_TTL = 12 * 60 * 60;
+
+
 @Injectable()
 export class WeatherService {
   constructor(
@@ -21,7 +24,7 @@ export class WeatherService {
     await this.cacheService.set<WeatherApiCurrentWeatherData>(
       cacheKey,
       currentData,
-      12 * 60 * 60,
+      CACHE_TTL,
     );
     return currentData;
   }

@@ -8,6 +8,10 @@ import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { JwtPayload } from './dto';
 
+
+/**
+ * Auth guard to check user JWT
+ */
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
