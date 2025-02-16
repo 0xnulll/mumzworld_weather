@@ -6,9 +6,9 @@ export class Location {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column() 
+  @Column()
   city: string;
 
   @Column()
   userId: number;
-} 
+}

@@ -10,4 +10,4 @@ import { WeatherApiService } from '../external/weather-api.service';
   controllers: [ForecastController],
   providers: [ForecastService, WeatherApiService],
 })
-export class ForecastModule {} 
+export class ForecastModule {}

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { User } from './dto';
 
-export type User = any;
-
+// Constants but can be stored in Database also
 @Injectable()
 export class UsersService {
   private readonly users = [
@@ -17,7 +17,9 @@ export class UsersService {
     },
   ];
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find(user => user.username === username);
+  findOne(username: string, password: string): User | undefined {
+    return this.users.find(
+      (user) => user.username === username && password == user.password,
+    );
   }
 }

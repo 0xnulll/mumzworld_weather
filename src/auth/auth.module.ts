@@ -4,18 +4,19 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 @Module({
-  imports: [UsersModule,
+  imports: [
+    UsersModule,
     JwtModule.registerAsync({
       imports: [],
       useFactory: async () => ({
         secret: process.env.JWT_SECRET,
-        signOptions: { expiresIn: '240h' }
+        signOptions: { expiresIn: '240h' },
       }),
       inject: [],
     }),
   ],
   providers: [AuthService],
   controllers: [AuthController],
-  exports:[JwtModule]
+  exports: [JwtModule],
 })
 export class AuthModule {}

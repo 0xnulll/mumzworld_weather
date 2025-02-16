@@ -1,5 +1,5 @@
 export class BaseDto<T> {
-    constructor(partial: Partial<T>) {
-        Object.assign(this, partial);
-      }
+  constructor(partial: Partial<T>) {
+    Object.assign(this, partial);
+  }
 }

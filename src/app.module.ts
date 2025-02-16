@@ -13,7 +13,6 @@ import { AppLoggerService } from './applogger.service';
 import { LoggerMiddleware } from './loggermiddleware.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { DirectiveLocation, GraphQLDirective, GraphQLSchema } from 'graphql';
 
 @Module({
   imports: [
@@ -23,10 +22,12 @@ import { DirectiveLocation, GraphQLDirective, GraphQLSchema } from 'graphql';
       autoSchemaFile: 'schema.gql',
       installSubscriptionHandlers: true,
     }),
-    ThrottlerModule.forRoot([{
-      ttl: 60000,
-      limit: 40,
-    }]),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 40,
+      },
+    ]),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -51,9 +52,10 @@ import { DirectiveLocation, GraphQLDirective, GraphQLSchema } from 'graphql';
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
-    }, AppLoggerService,
+    },
+    AppLoggerService,
   ],
-  exports:[AppLoggerService],
+  exports: [AppLoggerService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

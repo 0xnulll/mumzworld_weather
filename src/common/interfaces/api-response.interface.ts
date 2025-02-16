@@ -1,13 +1,13 @@
 export interface SuccessResponse<T = any> {
-    success: boolean;
-    data?: T;
-    message?: string;
+  success: boolean;
+  data?: T;
+  message?: string;
 }
 
 export interface ErrorResponse {
-    success: boolean;
-    error: string;
-    statusCode: number;
-} 
+  success: boolean;
+  error: string;
+  statusCode: number;
+}
 
-export type HttpApiResponse<T=any> = SuccessResponse<T> | ErrorResponse;
+export type HttpApiResponse<T = any> = SuccessResponse<T> | ErrorResponse;

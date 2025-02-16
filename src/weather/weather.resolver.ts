@@ -14,6 +14,8 @@ export class WeatherResolver {
     if (!city) {
       throw new BadRequestException('City parameter is required');
     }
-    return new CurrentWeatherDataDto(await this.weatherService.getWeather(city));
+    return new CurrentWeatherDataDto(
+      await this.weatherService.getWeather(city),
+    );
   }
 }

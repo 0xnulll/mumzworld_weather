@@ -13,19 +13,23 @@ export class AuthController {
     type: SignInDto,
     examples: {
       example1: {
-          summary: 'Valid request',
-          value: {
-            username: 'anup',
-            password: '3456'
-          }
-      }
-  }
+        summary: 'Valid request',
+        value: {
+          username: 'anup',
+          password: '3456',
+        },
+      },
+    },
   })
-  @ApiResponse({ status: 200, description: 'Login successful', schema: {
-    example: {
-      accessToken: 'your-jwt-token'
-    }
-  }})
+  @ApiResponse({
+    status: 200,
+    description: 'Login successful',
+    schema: {
+      example: {
+        accessToken: 'your-jwt-token',
+      },
+    },
+  })
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   @HttpCode(HttpStatus.OK)
   @Post('login')

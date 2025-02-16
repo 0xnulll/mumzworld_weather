@@ -9,9 +9,8 @@ export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     this.logger.setRequest(req);
     res.on('finish', () => {
-      this.logger.log("Request finished");
+      this.logger.log('Request finished');
     });
     next();
-    
   }
 }

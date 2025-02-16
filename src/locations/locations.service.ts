@@ -12,9 +12,9 @@ export class LocationsService {
 
   async create(city: string, userId: number): Promise<Location> {
     return await this.locationsRepository.save({
-        city,
-        userId,
-      });
+      city,
+      userId,
+    });
   }
 
   async delete(id: number, userId: number): Promise<void> {
@@ -26,11 +26,11 @@ export class LocationsService {
       where: { userId },
     });
   }
-    
+
   async existForUser(id: number, userId: number): Promise<boolean> {
     return await this.locationsRepository.existsBy({ id, userId });
   }
-    
+
   async existCityForUser(city: string, userId: number): Promise<boolean> {
     return await this.locationsRepository.existsBy({ city, userId });
   }

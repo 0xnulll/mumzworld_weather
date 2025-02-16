@@ -1,22 +1,28 @@
-import { Injectable, Inject, SerializeOptions, ClassSerializerInterceptor, UseInterceptors } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
-import {WeatherApiCurrentWeatherData, WeatherApiService } from '../external/weather-api.service';
+import {
+  WeatherApiCurrentWeatherData,
+  WeatherApiService,
+} from '../external/weather-api.service';
 
 @Injectable()
 export class WeatherService {
   constructor(
     private readonly weatherApiService: WeatherApiService,
-    @Inject(CACHE_MANAGER) private readonly cacheService: Cache
-  ) {
-  }
+    @Inject(CACHE_MANAGER) private readonly cacheService: Cache,
+  ) {}
 
   async getWeather(city: string): Promise<WeatherApiCurrentWeatherData> {
     const cacheKey = `weather_${city.toLocaleLowerCase()}`;
-    const cachedData = await this.cacheService.get<WeatherApiCurrentWeatherData>(cacheKey);
+    const cachedData =
+      await this.cacheService.get<WeatherApiCurrentWeatherData>(cacheKey);
     if (cachedData) return cachedData;
     const currentData = await this.weatherApiService.fetchCurrent(city);
-    await this.cacheService.set<WeatherApiCurrentWeatherData>(cacheKey, currentData, 12 * 60 * 60);
+    await this.cacheService.set<WeatherApiCurrentWeatherData>(
+      cacheKey,
+      currentData,
+      12 * 60 * 60,
+    );
     return currentData;
-      
-}
+  }
 }

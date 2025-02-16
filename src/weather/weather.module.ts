@@ -8,6 +8,6 @@ import { WeatherResolver } from './weather.resolver';
 @Module({
   imports: [HttpModule, CacheModule.register()],
   controllers: [WeatherController],
-  providers: [WeatherService,WeatherApiService,WeatherResolver],
+  providers: [WeatherService, WeatherApiService, WeatherResolver],
 })
 export class WeatherModule {}
