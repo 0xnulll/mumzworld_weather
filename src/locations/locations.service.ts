@@ -26,7 +26,7 @@ export class LocationsService {
     });
   }
 
-   /**
+  /**
    * Deletes a location by ID for a specific user.
    * @param id - The ID of the location to delete.
    * @param userId - The ID of the user.

@@ -3,7 +3,6 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { JWTDto } from './dto';
 
-
 /**
  * User Auth signin service
  */

@@ -18,7 +18,9 @@ export class WeatherApiService {
    */
   async fetchCurrent(city: string): Promise<WeatherApiCurrentWeatherData> {
     const url = `${this.SERVER_URL}/v1/current.json?key=${this.API_KEY}&q=${city}&aqi=no`;
-    const response = await firstValueFrom<{ data: WeatherApiCurrentWeatherData }>(this.httpService.get(url));
+    const response = await firstValueFrom<{
+      data: WeatherApiCurrentWeatherData;
+    }>(this.httpService.get(url));
     return response.data;
   }
 

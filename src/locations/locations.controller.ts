@@ -91,8 +91,7 @@ export class LocationsController {
     return { success: true, data };
   }
 
-
-  /** 
+  /**
    * Removes a location from the user's favorites.
    * @param id - The ID of the location to be removed.
    * @param req - The request object containing user information.
@@ -124,7 +123,6 @@ export class LocationsController {
     await this.locationsService.delete(id, req.user.userId);
     return { success: true };
   }
-
 
   /**
    * Retrieves the user's favorite locations.
@@ -160,7 +158,9 @@ export class LocationsController {
   async get(
     @Request() req: { user: User },
   ): Promise<HttpApiResponse<Array<LocationDto>>> {
-    const data = (await this.locationsService.findAllByUserId(req.user.userId)).map((t)=>new LocationDto(t)) ;
+    const data = (
+      await this.locationsService.findAllByUserId(req.user.userId)
+    ).map((t) => new LocationDto(t));
     return {
       success: true,
       data,

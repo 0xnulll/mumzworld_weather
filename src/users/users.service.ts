@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { User } from './dto';
 
 /**
-* Service for managing users.
-* This service provides methods to interact with user data.
-* Used user as constant here but can be replaced with real users in db, password can be stored as hash
-**/
+ * Service for managing users.
+ * This service provides methods to interact with user data.
+ * Used user as constant here but can be replaced with real users in db, password can be stored as hash
+ **/
 @Injectable()
 export class UsersService {
   private readonly users = [

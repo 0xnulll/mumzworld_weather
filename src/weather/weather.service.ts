@@ -7,7 +7,6 @@ import {
 
 const CACHE_TTL = 12 * 60 * 60;
 
-
 @Injectable()
 export class WeatherService {
   constructor(
