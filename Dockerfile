@@ -19,7 +19,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install --only=production
-
+# Copy dist from development
 COPY --from=development /usr/src/app/dist/src ./dist
 COPY ormconfig.ts ./
 COPY tsconfig* ./

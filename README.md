@@ -23,7 +23,7 @@ $ npm run start:dev
 
 **This can be installed via docker**
 
-#via docker
+# via docker
 ```
 $ docker-compose build
 $ docker-compose up
@@ -65,7 +65,7 @@ The `src` folder contains the core application code for the Weather API, organiz
 
 # Assumption 
 
-Weather, Locations end point uses city as string input and not users favorite locations id, if requirement is such a way to use user's favorite location as input, it can be changed that way. There endppoints are not protected and does not require user login.
+Weather, Locations end point uses city as string input and not users favorite locations id, if requirement is such a way to use user's favorite location as input, it can be changed that way. This endppoints are not protected and does not require user login.
 
 # Feature Modules Overview
 
@@ -81,9 +81,3 @@ Weather, Locations end point uses city as string input and not users favorite lo
     **Users entities are hard code in UsersService and did not store it in PGSQL as scope of project was increasing**
 
 - **locations/**: This module focuses on managing user's favorite locations.
-
-This structure promotes modularity and separation of concerns, making the application easier to maintain and extend.
-
-
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
