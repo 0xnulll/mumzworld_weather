@@ -4,6 +4,11 @@ import { CurrentWeatherDataDto } from './dto';
 import { BadRequestException } from '@nestjs/common';
 import { SkipThrottle } from '@nestjs/throttler';
 
+/**
+ * Resolver for fetching weather data for GraphQL.
+ * @remarks
+ * This resolver handles queries related to current weather information.
+ */
 @SkipThrottle()
 @Resolver(() => CurrentWeatherDataDto)
 export class WeatherResolver {

@@ -8,7 +8,7 @@ import { CreateLocationDto } from './dto/dto';
 describe('LocationsController', () => {
   let controller: LocationsController;
   let locationService: LocationsService;
-  const user = { userId: 1, username: "anup" };
+  const user = { userId: 1, username: 'anup' };
   beforeEach(async () => {
     const mock_AuthGuard = { CanActivate: jest.fn(() => true) };
 
@@ -40,17 +40,17 @@ describe('LocationsController', () => {
   describe('create', () => {
     it('should throw BadRequestException if city is not provided', async () => {
       const postData: CreateLocationDto = { city: '' }; // or {} depending on your DTO
-      await expect(
-        controller.create(postData, { user: user }),
-      ).rejects.toThrow(BadRequestException);
+      await expect(controller.create(postData, { user: user })).rejects.toThrow(
+        BadRequestException,
+      );
     });
 
     it('should throw BadRequestException if city already exists for user', async () => {
       const postData: CreateLocationDto = { city: 'Pune' };
       jest.spyOn(locationService, 'existCityForUser').mockResolvedValue(true); // Simulate existing city
-      await expect(
-        controller.create(postData, { user: user }),
-      ).rejects.toThrow(BadRequestException);
+      await expect(controller.create(postData, { user: user })).rejects.toThrow(
+        BadRequestException,
+      );
     });
 
     it('should return success response when location is created', async () => {

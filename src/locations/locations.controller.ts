@@ -82,6 +82,8 @@ export class LocationsController {
     return { success: true, data };
   }
 
+
+
   @ApiOperation({ summary: 'Remove a location from favorites' })
   @ApiParam({ name: 'id', type: 'number', description: 'Location ID' })
   @ApiResponse({
@@ -108,6 +110,8 @@ export class LocationsController {
     await this.locationsService.delete(id, req.user.userId);
     return { success: true };
   }
+
+
 
   @ApiOperation({ summary: 'Retrieve the user’s favorite locations' })
   @ApiResponse({
@@ -138,7 +142,7 @@ export class LocationsController {
   async get(
     @Request() req: { user: User },
   ): Promise<HttpApiResponse<Array<LocationDto>>> {
-    const data = await this.locationsService.findAllByUserId(req.user.userId);
+    const data = (await this.locationsService.findAllByUserId(req.user.userId)).map((t)=>new LocationDto(t)) ;
     return {
       success: true,
       data,

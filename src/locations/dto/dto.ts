@@ -1,6 +1,7 @@
 import { Expose } from 'class-transformer';
 
 import { IsString, IsNotEmpty, MinLength } from 'class-validator';
+import { BaseDto } from 'src/common/dto';
 
 export class CreateLocationDto {
   @IsString()
@@ -9,7 +10,7 @@ export class CreateLocationDto {
   city: string;
 }
 
-export class LocationDto {
+export class LocationDto extends BaseDto<LocationDto> {
   @Expose()
   id: number;
 
