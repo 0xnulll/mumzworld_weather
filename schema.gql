@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CurrentWeatherDto {
+  last_updated_epoch: Int!
+  last_updated: String!
+  temp_c: Float!
+  temp_f: Float!
+  feelslike_c: Float!
+  feelslike_f: Float!
+}
+
+type LocationDto {
+  name: String!
+  region: String!
+  country: String!
+  lat: Float!
+  lon: Float!
+  tz_id: String!
+  localtime_epoch: Int!
+  localtime: String!
+}
+
+type CurrentWeatherDataDto {
+  location: LocationDto!
+  current: CurrentWeatherDto!
+}
+
+type Query {
+  getWeather(city: String!): CurrentWeatherDataDto!
+}
